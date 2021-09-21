@@ -1,6 +1,6 @@
 # calculator
 
-This is a basic calculator
+This is a basic calculator.
 
 It has the ability to perform calculations. It has the clear button that resets back to zero and it also has the ability to enter in a bunch of numbers.
 
