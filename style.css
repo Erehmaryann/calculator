@@ -79,6 +79,17 @@ button {
 	background-color: rgb(199, 199, 199);
 }
 
+.operator {
+	background: grey;
+	color: #fff;
+	font-size: 30px;
+}
+
+.clear {
+	background: #f72626;
+	color: #fff;
+}
+
 .equal-sign {
 	grid-column: -2;
 	grid-row: 2 / span 4;
