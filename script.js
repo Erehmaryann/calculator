@@ -8,7 +8,9 @@ const clearBtn = document.getElementById('clear-btn');
 
 
 const sendNumberValue = (number) => {
-    calculatorDisplay.textContent = number;
+    // If the curr display value is 0, replace it, if not add number
+    const displayValue = calculatorDisplay.textContent;
+    calculatorDisplay.textContent = displayValue === "0" ? number : displayValue + number;
 };
 
 // Add Event Listeners for numbers, operators, decimal buttons
@@ -23,6 +25,6 @@ inputBtns.forEach((inputBtn) => {
     }
     // for btns that has the decimal class
     else if (inputBtn.classList.contains('decimal')) {
-        inputBtn.addEventListener("click", () => sendNumberValue());
+        inputBtn.addEventListener("click", () => sendNumberValue(inputBtn.value));
     }
 });
