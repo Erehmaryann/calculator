@@ -43,17 +43,23 @@ const calculate = {
     '=': (firstNum, secondNum) => secondNum,
 };
 
+console.log(calcu);
+
 const useOperator = (operator) => {
     const currValue = Number(calculatorDisplay.textContent);
     // Prevent multiple operators
-    if (operatorValue && awaitingNextValue) return;
+    if (operatorValue && awaitingNextValue) {
+        // Resigning the operator value
+        operatorValue = operator;
+        return;
+    };
     // Assign firstValue if no value
     if (!firstVal) {
         firstVal = currValue;
     } else {
-        console.log(firstVal, operatorValue, currValue);
         const calculation = calculate[operatorValue](firstVal, currValue);
-        console.log("cal", calculation);
+        calculatorDisplay.textContent = calculation;
+        firstVal = calculation;
     }
     // Ready for next value, store operator
     awaitingNextValue = true; //it turns true after hitting the operator btn
