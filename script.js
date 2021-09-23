@@ -30,19 +30,34 @@ const addDecimal = () => {
     }
 };
 
+// Calculate first and second values depending on operator
+const calculate = {
+    '/': (firstNum, secondNum) => firstNum / secondNum,
+
+    '*': (firstNum, secondNum) => firstNum * secondNum,
+
+    '+': (firstNum, secondNum) => firstNum + secondNum,
+
+    '-': (firstNum, secondNum) => firstNum - secondNum,
+
+    '=': (firstNum, secondNum) => secondNum,
+};
+
 const useOperator = (operator) => {
     const currValue = Number(calculatorDisplay.textContent);
+    // Prevent multiple operators
+    if (operatorValue && awaitingNextValue) return;
     // Assign firstValue if no value
     if (!firstVal) {
         firstVal = currValue;
     } else {
-        console.log("currVal", currValue);
+        console.log(firstVal, operatorValue, currValue);
+        const calculation = calculate[operatorValue](firstVal, currValue);
+        console.log("cal", calculation);
     }
     // Ready for next value, store operator
-    awaitingNextValue = true;
+    awaitingNextValue = true; //it turns true after hitting the operator btn
     operatorValue = operator;
-    console.log(firstVal);
-    console.log(operatorValue);
 };
 
 // Add Event Listeners for numbers, operators, decimal buttons
