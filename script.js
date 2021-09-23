@@ -13,6 +13,13 @@ const sendNumberValue = (number) => {
     calculatorDisplay.textContent = displayValue === "0" ? number : displayValue + number;
 };
 
+const addDecimal = () => {
+    // If no decimal, add one
+    if (!calculatorDisplay.textContent.includes('.')) {
+        calculatorDisplay.textContent = `${calculatorDisplay.textContent}.`;
+    }
+};
+
 // Add Event Listeners for numbers, operators, decimal buttons
 inputBtns.forEach((inputBtn) => {
     // when no css class is assigned to the btn
@@ -25,6 +32,14 @@ inputBtns.forEach((inputBtn) => {
     }
     // for btns that has the decimal class
     else if (inputBtn.classList.contains('decimal')) {
-        inputBtn.addEventListener("click", () => sendNumberValue(inputBtn.value));
+        inputBtn.addEventListener("click", () => addDecimal());
     }
 });
+
+// Reset display
+const resetAll = () => {
+    calculatorDisplay.textContent = '0';
+};
+
+// Clear Button Event Listener
+clearBtn.addEventListener("click", resetAll);
