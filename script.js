@@ -3,11 +3,22 @@ const calculatorDisplay = document.querySelector("h1");
 const inputBtns = document.querySelectorAll("button");
 const clearBtn = document.getElementById('clear-btn');
 
+// Calculate first and second values depending on operator
+const calculate = {
+    '/': (firstNum, secondNum) => firstNum / secondNum,
+
+    '*': (firstNum, secondNum) => firstNum * secondNum,
+
+    '+': (firstNum, secondNum) => firstNum + secondNum,
+
+    '-': (firstNum, secondNum) => firstNum - secondNum,
+
+    '=': (firstNum, secondNum) => secondNum,
+};
+
 let firstVal = 0;
 let operatorValue = "";
 let awaitingNextValue = false;
-
-
 
 const sendNumberValue = (number) => {
     //Replace current display value if first value is entered
@@ -30,21 +41,6 @@ const addDecimal = () => {
     }
 };
 
-// Calculate first and second values depending on operator
-const calculate = {
-    '/': (firstNum, secondNum) => firstNum / secondNum,
-
-    '*': (firstNum, secondNum) => firstNum * secondNum,
-
-    '+': (firstNum, secondNum) => firstNum + secondNum,
-
-    '-': (firstNum, secondNum) => firstNum - secondNum,
-
-    '=': (firstNum, secondNum) => secondNum,
-};
-
-console.log(calcu);
-
 const useOperator = (operator) => {
     const currValue = Number(calculatorDisplay.textContent);
     // Prevent multiple operators
@@ -66,6 +62,15 @@ const useOperator = (operator) => {
     operatorValue = operator;
 };
 
+
+// Reset all values, display
+const resetAll = () => {
+    firstVal = 0;
+    operatorValue = "";
+    awaitingNextValue = false;
+    calculatorDisplay.textContent = '0';
+};
+
 // Add Event Listeners for numbers, operators, decimal buttons
 inputBtns.forEach((inputBtn) => {
     // when no css class is assigned to the btn
@@ -81,14 +86,6 @@ inputBtns.forEach((inputBtn) => {
         inputBtn.addEventListener("click", () => addDecimal());
     }
 });
-
-// Reset all values, display
-const resetAll = () => {
-    firstVal = 0;
-    operatorValue = "";
-    awaitingNextValue = false;
-    calculatorDisplay.textContent = '0';
-};
 
 // Clear Button Event Listener
 clearBtn.addEventListener("click", resetAll);
